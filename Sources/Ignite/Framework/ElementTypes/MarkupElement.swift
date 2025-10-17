@@ -20,7 +20,7 @@ public protocol MarkupElement: Sendable {
 extension MarkupElement {
     /// Converts this element and its children into an HTML string with attributes.
     /// - Returns: A string containing the HTML markup
-    func markupString() -> String {
+    public func markupString() -> String {
         markup().string
     }
 

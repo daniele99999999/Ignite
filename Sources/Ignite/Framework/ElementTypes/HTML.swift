@@ -21,6 +21,10 @@ public extension HTML {
     func markup() -> Markup {
         body.markup()
     }
+    
+    func markupString() -> String {
+        markup().string
+    }
 }
 
 extension HTML {
