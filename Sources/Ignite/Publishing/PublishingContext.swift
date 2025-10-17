@@ -12,7 +12,7 @@ import SwiftSoup
 /// elements. This allows any part of the site to reference content, add
 /// build warnings, and more.
 @MainActor
-final class PublishingContext {
+public final class PublishingContext {
     /// The shared instance of `PublishingContext`.
     private static var sharedContext: PublishingContext!
 
@@ -115,6 +115,16 @@ final class PublishingContext {
         let context = try PublishingContext(for: site, from: file, buildDirectoryPath: buildDirectoryPath)
         sharedContext = context
         return context
+    }
+    
+    /// Creates and sets the shared instance of a mocked `PublishingContext`
+    /// - Parameters:
+    ///   - mockSite: The mocked site we're currently publishing.
+    ///   The default is "Build".
+    /// - Returns: The shared `PublishingContext` instance.
+    @discardableResult
+    public static func initializeMocked(for mockSite: any Site) throws -> PublishingContext {
+        try PublishingContext.initialize(for: mockSite, from: #filePath)
     }
 
     /// Returns all content tagged with the specified tag, or all content if the tag is nil.
